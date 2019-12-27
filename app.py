@@ -31,9 +31,12 @@ def create_connection():
 
 #Select values from a database
 def select_values(sql, cursor):
-    cursor.execute(sql)
-    data = cursor.fetchall()
-    return data
+    try:
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        return data
+    except:
+        cursor.close()
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
