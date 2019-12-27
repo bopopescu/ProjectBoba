@@ -47,15 +47,14 @@ def index():
         conn = create_connection()
         cursor = conn.cursor()
         data = select_values("SELECT * FROM bobastoreNYC", cursor)
-        print(data)
+        # print(data)
         # cursor.execute("INSERT INTO bobastoreNYC(bobatexture, price) VALUES (%s, %d)", (bt, pr))
         # mysql.connection.commit()
         cursor.close()
         conn.close()
-        return "success"
+        return render_template("index.html", outputdata = data)
     return render_template("index.html")
 
 
 if __name__ == "__main__":
     app.run()
-

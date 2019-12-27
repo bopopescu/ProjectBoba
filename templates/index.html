@@ -27,6 +27,11 @@
 
       <input type="submit">
     </form>
-    <div class="output"> </div>
+    {% if outputdata %}
+      <div class="output">
+        <p>Your store is: {{outputdata[1][1]}}</p>
+      </div>
+    {% endif %}
+
   </body>
 </html>
