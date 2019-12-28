@@ -27,9 +27,17 @@
 
       <input type="submit">
     </form>
-    {% if outputdata %}
+
+    <!-- different outputs based on how many stores fit the query -->
+    {% if outputdata|length > 0 %}
       <div class="output">
-        <p>Your store is: {{outputdata[1][1]}}</p>
+        <p>Your store is: {{outputdata[0][1]}}</p>
+        <p>What we like about them:</p>
+        <p>Tips:</p>
+      </div>
+    {% else %}
+      <div class="output">
+        <p>No store match</p>
       </div>
     {% endif %}
 

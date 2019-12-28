@@ -30,26 +30,26 @@ def create_connection():
     return conn
 
 #Select values from a database
-def select_values(sql, cursor):
-    try:
-        cursor.execute(sql)
-        data = cursor.fetchall()
-        return data
-    except:
-        cursor.close()
+# def select_values(sql, cursor):
+#     try:
+#         cursor.execute(sql)
+#         data = cursor.fetchall()
+#         return data
+#     except:
+#         cursor.close()
 
 #Matching results based on boba_texture and price
 def matching(cursor, boba_texture, price):
     try:
         cursor.execute("SELECT * FROM bobastoreNYC WHERE \
-                       bobatexture = %(boba_texture)s AND price = %(price)s", 
+                       bobatexture = %(boba_texture)s AND price = %(price)s",
                        {"boba_texture": boba_texture, "price": price})
         data = cursor.fetchall()
         print(data)
         return data
     except:
         cursor.close()
-        
+
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -59,7 +59,7 @@ def index():
         price = details['price']
         conn = create_connection()
         cursor = conn.cursor()
-        data = select_values("SELECT * FROM bobastoreNYC", cursor)
+        data = matching(cursor, boba_texture, price)
         cursor.close()
         conn.close()
         return render_template("index.html", outputdata = data)
