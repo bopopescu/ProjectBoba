@@ -1,7 +1,7 @@
 ## ProjectBoba
 
 #TODO:
-- [] Add more parameters to database
-- [] populate database
-- [] Ranking sytem results
-- [] Better UI
+- [ ] Add more parameters to database
+- [ ] populate database
+- [ ] Ranking sytem results
+- [ ] Better UI
