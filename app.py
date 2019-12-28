@@ -29,15 +29,6 @@ def create_connection():
         print(e)
     return conn
 
-#Select values from a database
-# def select_values(sql, cursor):
-#     try:
-#         cursor.execute(sql)
-#         data = cursor.fetchall()
-#         return data
-#     except:
-#         cursor.close()
-
 #Matching results based on boba_texture, bobatype and price
 def matching(cursor, boba_texture, price, bobatype):
     try:
@@ -45,7 +36,6 @@ def matching(cursor, boba_texture, price, bobatype):
                        bobatexture = %(boba_texture)s AND price = %(price)s AND {bobatype} = 1",
                        {"boba_texture": boba_texture, "price": price})
         data = cursor.fetchall()
-        print(data)
         return data
     except:
         cursor.close()
@@ -66,6 +56,11 @@ def index():
         return render_template("index.html", outputdata = data)
     return render_template("index.html")
 
+#@app.route("/survey", methods = ['POST'])
+#def survey():
+#    if request.method == "POST":
+#        details = request.form
+        
 
 if __name__ == "__main__":
     app.run()
