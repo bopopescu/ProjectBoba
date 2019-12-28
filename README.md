@@ -1,6 +1,6 @@
 ## ProjectBoba
 
-#TODO:
+### TODO:
 - [ ] Add more parameters to database
 - [ ] populate database
 - [ ] Ranking sytem results
