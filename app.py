@@ -38,18 +38,28 @@ def select_values(sql, cursor):
     except:
         cursor.close()
 
+#Matching results based on boba_texture and price
+def matching(cursor, boba_texture, price):
+    try:
+        cursor.execute("SELECT * FROM bobastoreNYC WHERE \
+                       bobatexture = %(boba_texture)s AND price = %(price)s", 
+                       {"boba_texture": boba_texture, "price": price})
+        data = cursor.fetchall()
+        print(data)
+        return data
+    except:
+        cursor.close()
+        
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == "POST":
         details = request.form
-        bt = details['bobatexture']
-        pr = details['price']
+        boba_texture = details['bobatexture']
+        price = details['price']
         conn = create_connection()
         cursor = conn.cursor()
         data = select_values("SELECT * FROM bobastoreNYC", cursor)
-        # print(data)
-        # cursor.execute("INSERT INTO bobastoreNYC(bobatexture, price) VALUES (%s, %d)", (bt, pr))
-        # mysql.connection.commit()
         cursor.close()
         conn.close()
         return render_template("index.html", outputdata = data)
