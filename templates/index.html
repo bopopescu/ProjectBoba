@@ -11,6 +11,14 @@
     <h3>Take this survey and find out your perfect boba spot near NYU</h3>
     <form method="POST" action="">
       <div class="form-section">
+        <label><b>Plain, milk or fruit tea?</b></label>
+        <input type="radio" name="bobatype" value="plaintea"> Plain Tea
+        <input type="radio" name="bobatype" value="milktea"> Milk Tea
+        <input type="radio" name="bobatype" value="fruitea"> Fruit Tea
+        <br>
+      </div>
+
+      <div class="form-section">
         <label><b>Do you prefer chewy or regular Boba?</b></label>
         <input type="radio" name="bobatexture" value="soft"> soft
         <input type="radio" name="bobatexture" value="regular"> regular
@@ -32,8 +40,9 @@
     {% if outputdata|length > 0 %}
       <div class="output">
         <p>Your store is: {{outputdata[0][1]}}</p>
-        <p>What we like about them:</p>
-        <p>Tips:</p>
+        <p>Address: {{outputdata[0][2]}}</p>
+        <p>phone number: {{outputdata[0][3]}}</p>
+        <p>What we like about them: {{outputdata[0][4]}}</p>
       </div>
     {% else %}
       <div class="output">

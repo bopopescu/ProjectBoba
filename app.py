@@ -38,11 +38,11 @@ def create_connection():
 #     except:
 #         cursor.close()
 
-#Matching results based on boba_texture and price
-def matching(cursor, boba_texture, price):
+#Matching results based on boba_texture, bobatype and price
+def matching(cursor, boba_texture, price, bobatype):
     try:
-        cursor.execute("SELECT * FROM bobastoreNYC WHERE \
-                       bobatexture = %(boba_texture)s AND price = %(price)s",
+        cursor.execute(f"SELECT * FROM bobastoreNYC WHERE \
+                       bobatexture = %(boba_texture)s AND price = %(price)s AND {bobatype} = 1",
                        {"boba_texture": boba_texture, "price": price})
         data = cursor.fetchall()
         print(data)
@@ -57,9 +57,10 @@ def index():
         details = request.form
         boba_texture = details['bobatexture']
         price = details['price']
+        bobatype = details['bobatype']
         conn = create_connection()
         cursor = conn.cursor()
-        data = matching(cursor, boba_texture, price)
+        data = matching(cursor, boba_texture, price, bobatype)
         cursor.close()
         conn.close()
         return render_template("index.html", outputdata = data)
