@@ -42,13 +42,15 @@ def matching(cursor, boba_texture, price, bobatype):
     except:
         cursor.close()
 
-def addRec(conn, cursor, storename, reason):
+def addRec(conn, cursor, storename, reason, bobatexture):
     try:
         ts = time.time()
         timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-        cursor.execute("INSERT INTO recommendation (storename, reason, submittime) \
-                       VALUES(%(storename)s, %(reason)s, %(timestamp)s)",
-                       {"storename": storename, "reason": reason, "timestamp": timestamp})
+        cursor.execute("INSERT INTO recommendation (storename,  bobatexture, \
+                        reason, submittime) VALUES(%(storename)s, \
+                        %(bobatexture)s, %(reason)s, %(timestamp)s)",
+                       {"storename": storename, "reason": reason, \
+                        "timestamp": timestamp, 'bobatexture': bobatexture})
         conn.commit()
         return "success"
     except:
@@ -87,20 +89,14 @@ def table():
         details = request.form
         storename= details['storename']
         reason = details['reason']
-        # conn = create_connection()
-        # cursor = conn.cursor()
-        addition = addRec(conn, cursor, storename, reason)
+        bobatexture = details['bobatexture']
+        addition = addRec(conn, cursor, storename, reason, bobatexture)
         cursor.close()
         conn.close()
         return render_template("table.html", table = tabledata, result = addition)
     cursor.close()
     conn.close()
     return render_template("table.html", table = tabledata)
-
-#@app.route("/survey", methods = ['POST'])
-#def survey():
-#    if request.method == "POST":
-#        details = request.form
 
 
 if __name__ == "__main__":
