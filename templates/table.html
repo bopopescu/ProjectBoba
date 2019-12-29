@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Your Perfect Boba</title>
+  <script src="{{ url_for('static', filename='JS/main.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+</head>
+<body>
+  <h3>Here is a list of all the boba stores we tried near NYU</h3>
+
+  {% if table|length > 0 %}
+  <table>
+    <tr style="background-color: #D3D3D3;">
+      <td><p class="tableHeading">Store Name</p></td>
+      <td><p class="tableHeading">Store Address</p></td>
+      <td><p class="tableHeading">What We Like About Them</p></td>
+    </tr>
+    {% for row in table %}
+    <tr>
+      <td>{{row[0]}}</td>
+      <td>{{row[1]}}</td>
+      <td>{{row[2]}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <div class="errormessage">
+    <p>Somgthing went wrong :( Please try again</p>
+  </div>
+  {% endif %}
+
+  <h3>Don't see your go-to store? Tell us so we can add it to our list!</h3>
+
+  <form method="POST" action="">
+    <div class="form-section">
+      <label><b>What is the store name?</b></label>
+      <input type="text" name="storename">
+      <br>
+    </div>
+
+    <div class="form-section">
+      <label><b>Tell us why you love this store:</b></label>
+      <input type="text" name="reason" placeholder="optional">
+      <br>
+    </div>
+    <input type="submit">
+  </form>
+
+  <!-- different outputs based on how many stores fit the query -->
+  {% if result == "success" %}
+    <div class="output">
+      <p>We added your rec.</p>
+    </div>
+  {% elif result == "failed" %}
+    <div class="output">
+      <p>Failed to add :(</p>
+    </div>
+  {% endif %}
+<br>
+<br><br><br>
+</body>
+</html>

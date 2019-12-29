@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from flaskext.mysql import MySQL
 import json
+import time
+import datetime
 
 ##### CONFIG #####
 app = Flask(__name__)
@@ -40,6 +42,26 @@ def matching(cursor, boba_texture, price, bobatype):
     except:
         cursor.close()
 
+def addRec(conn, cursor, storename, reason):
+    try:
+        ts = time.time()
+        timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        cursor.execute("INSERT INTO recommendation (storename, reason, submittime) \
+                       VALUES(%(storename)s, %(reason)s, %(timestamp)s)",
+                       {"storename": storename, "reason": reason, "timestamp": timestamp})
+        conn.commit()
+        return "success"
+    except:
+        cursor.close()
+        return "failed"
+
+def getAll(cursor):
+    try:
+        cursor.execute("SELECT storename, storeaddress, whatwelike FROM bobastoreNYC")
+        data = cursor.fetchall()
+        return data
+    except:
+        cursor.close()
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -53,14 +75,33 @@ def index():
         data = matching(cursor, boba_texture, price, bobatype)
         cursor.close()
         conn.close()
-        return render_template("index.html", outputdata = data)
+        return render_template("index.html", outputdata = data, searched = True)
     return render_template("index.html")
+
+@app.route("/table", methods=['GET', 'POST'])
+def table():
+    conn = create_connection()
+    cursor = conn.cursor()
+    tabledata = getAll(cursor)
+    if request.method == "POST":
+        details = request.form
+        storename= details['storename']
+        reason = details['reason']
+        # conn = create_connection()
+        # cursor = conn.cursor()
+        addition = addRec(conn, cursor, storename, reason)
+        cursor.close()
+        conn.close()
+        return render_template("table.html", table = tabledata, result = addition)
+    cursor.close()
+    conn.close()
+    return render_template("table.html", table = tabledata)
 
 #@app.route("/survey", methods = ['POST'])
 #def survey():
 #    if request.method == "POST":
 #        details = request.form
-        
+
 
 if __name__ == "__main__":
     app.run()

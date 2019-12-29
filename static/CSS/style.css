@@ -13,6 +13,24 @@ h3 {
   font-weight: 700;
 }
 
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+table td {
+  border: 2px solid black;
+  padding: 7px 2px;
+}
+
+
 .form-section {
   padding-bottom: 20px;
+}
+
+.tableHeading {
+  font-size: 20px;
+  margin: 0;
+
 }
