@@ -66,7 +66,11 @@ def getAll(cursor):
         cursor.close()
 
 @app.route("/", methods=['GET', 'POST'])
-def index():
+def home():
+    return render_template("home.html")
+
+@app.route("/search", methods=['GET', 'POST'])
+def search():
     if request.method == "POST":
         details = request.form
         boba_texture = details['bobatexture']
@@ -77,8 +81,9 @@ def index():
         data = matching(cursor, boba_texture, price, bobatype)
         cursor.close()
         conn.close()
-        return render_template("index.html", outputdata = data, searched = True)
-    return render_template("index.html")
+        return render_template("search.html", outputdata = data, searched = True)
+    return render_template("search.html")
+
 
 @app.route("/table", methods=['GET', 'POST'])
 def table():

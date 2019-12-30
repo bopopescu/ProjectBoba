@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProjectBoba | Find Your Perfect Boba</title>
+    <script src="{{ url_for('static', filename='JS/main.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <div class="landing">
+      <div class="landing-row-master">
+        <div class="landing-row text-align-right">
+          <img src="{{url_for('static', filename='boba1.jpg')}}" alt="">
+        </div>
+        <div class="landing-row text-align-left">
+          <h1>ProjectBoba</h1>
+          <p>Discover your next favorite boba shop.</p>
+          <p>(Current only support NYU area)</p>
+          <p><b>Click on the links below to:</b></p>
+          <p><a href="{{ url_for('search') }}">Find your perfect boba store</a></p>
+          <p><a href="{{ url_for('table') }}">see all the boba stores we tried</a></p>
+        </div>
+      </div>
+      <!-- <span id=”down”>&#8595;</span> -->
+    </div>
+  </body>
+</html>

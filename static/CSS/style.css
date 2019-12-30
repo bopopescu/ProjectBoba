@@ -1,10 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
 
 body, html {
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
   text-align: center;
+}
+
+.landing-row h1 {
+  font-family: 'Lato', 'Raleway', sans-serif;
+  font-size: 80px;
+  font-variant: ordinal;
+  font-weight: 400;
+  margin: 0;
+}
+
+.landing-row p {
+  font-size: 15px;
+  margin: 0;
+  padding: 7px 0;
 }
 
 h3 {
@@ -24,6 +39,34 @@ table td {
   padding: 7px 2px;
 }
 
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.landing-row {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 20px;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.landing-row img {
+  height: 260px;
+  width: auto;
+}
+
 
 .form-section {
   padding-bottom: 20px;
@@ -32,5 +75,17 @@ table td {
 .tableHeading {
   font-size: 20px;
   margin: 0;
-
 }
+
+/* #down {
+ position: absolute;
+ top:92vh;
+ padding: 5px;
+ font-size: 1.5em;
+}
+
+#down:hover {
+ cursor: pointer;
+ color: red;
+ opacity: 0.8;
+} */
