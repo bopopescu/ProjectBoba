@@ -8,18 +8,44 @@ body, html {
   text-align: center;
 }
 
+.fat-nav__wrapper {
+  background-color: wheat;
+}
+
+.hamburger {
+  top: 3% !important;
+  right: 3% !important;
+}
+
+.hamburger .hamburger__icon,
+.hamburger .hamburger__icon:before,
+.hamburger .hamburger__icon:after {
+    background-color: wheat;
+}
+
 .landing-row h1 {
   font-family: 'Lato', 'Raleway', sans-serif;
-  font-size: 80px;
-  font-variant: ordinal;
+  font-size: 120px;
+  font-variant: petite-caps;
   font-weight: 400;
   margin: 0;
+  color: wheat;
 }
 
 .landing-row p {
-  font-size: 15px;
+  font-size: 25px;
   margin: 0;
+  color: wheat;
+  font-weight: bold;
   padding: 7px 0;
+}
+
+.landing-row a {
+  color: black;
+}
+
+.landing-row a:hover {
+  color: red;
 }
 
 h3 {
@@ -44,7 +70,10 @@ table td {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  background-size: cover;
+  background-position: center;
+  background-image: url(../boba-bg1.jpeg);
 }
 
 

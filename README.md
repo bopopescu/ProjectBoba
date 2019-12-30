@@ -6,7 +6,7 @@
 - [ ] Ranking sytem results
 - [ ] About us / goal section on homepage
 - [ ] User query insert
-- [ ] hamburger menu (or something equivalent) to switch between pages
+- [x] hamburger menu (or something equivalent) to switch between pages
 - [ ] Better UI
 
 ### GOAL:
