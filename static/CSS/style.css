@@ -6,6 +6,7 @@ body, html {
   padding: 0;
   font-family: 'Raleway', sans-serif;
   text-align: center;
+  background-color: #FEF7E1;
 }
 
 .fat-nav__wrapper {
@@ -15,12 +16,13 @@ body, html {
 .hamburger {
   top: 3% !important;
   right: 3% !important;
+  position: absolute !important;
 }
 
 .hamburger .hamburger__icon,
 .hamburger .hamburger__icon:before,
 .hamburger .hamburger__icon:after {
-    background-color: wheat;
+    background-color: #EDD8BB;
 }
 
 .landing-row h1 {
@@ -44,8 +46,8 @@ body, html {
   color: black;
 }
 
-.landing-row a:hover {
-  color: red;
+.fat-nav li a:hover {
+  color: #EF8E7D;
 }
 
 h3 {
@@ -61,7 +63,7 @@ table {
 }
 
 table td {
-  border: 2px solid black;
+  border: 2px solid #E2AA87;
   padding: 7px 2px;
 }
 

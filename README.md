@@ -5,7 +5,7 @@
 - [ ] populate database
 - [ ] Ranking sytem results
 - [ ] About us / goal section on homepage
-- [ ] User query insert
+- [X] User query insert
 - [x] hamburger menu (or something equivalent) to switch between pages
 - [ ] Better UI
 

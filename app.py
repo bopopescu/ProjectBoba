@@ -20,7 +20,7 @@ app.config['MYSQL_DATABASE_USER'] = db_user
 app.config['MYSQL_DATABASE_PASSWORD'] = db_pw
 app.config['MYSQL_DATABASE_DB'] = 'two'
 mysql = MySQL(app)
-
+ts = time.time()
 
 #Create_connection
 def create_connection():
@@ -32,19 +32,25 @@ def create_connection():
     return conn
 
 #Matching results based on boba_texture, bobatype and price
-def matching(cursor, boba_texture, price, bobatype):
+def matching(conn, cursor, boba_texture, price, bobatype):
     try:
         cursor.execute(f"SELECT * FROM bobastoreNYC WHERE \
                        bobatexture = %(boba_texture)s AND price = %(price)s AND {bobatype} = 1",
                        {"boba_texture": boba_texture, "price": price})
         data = cursor.fetchall()
+        timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        cursor.execute(f"INSERT INTO searchdata (bobatexture, price, {bobatype}, submittime) \
+                        VALUES(%(bobatexture)s, %(price)s, 1, %(timestamp)s)",
+                       {'bobatexture': boba_texture, 'price': price, 'timestamp':timestamp})
+        conn.commit()
         return data
-    except:
+    except Exception as e:
+        print(e)
         cursor.close()
+        return "failed"
 
 def addRec(conn, cursor, storename, reason, bobatexture):
     try:
-        ts = time.time()
         timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
         cursor.execute("INSERT INTO recommendation (storename,  bobatexture, \
                         reason, submittime) VALUES(%(storename)s, \
@@ -53,7 +59,8 @@ def addRec(conn, cursor, storename, reason, bobatexture):
                         "timestamp": timestamp, 'bobatexture': bobatexture})
         conn.commit()
         return "success"
-    except:
+    except Exception as e:
+        print(e)
         cursor.close()
         return "failed"
 
@@ -62,8 +69,10 @@ def getAll(cursor):
         cursor.execute("SELECT storename, storeaddress, whatwelike FROM bobastoreNYC")
         data = cursor.fetchall()
         return data
-    except:
+    except Exception as e:
+        print(e)
         cursor.close()
+        return "failed"
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -78,7 +87,7 @@ def search():
         bobatype = details['bobatype']
         conn = create_connection()
         cursor = conn.cursor()
-        data = matching(cursor, boba_texture, price, bobatype)
+        data = matching(conn, cursor, boba_texture, price, bobatype)
         cursor.close()
         conn.close()
         return render_template("search.html", outputdata = data, searched = True)

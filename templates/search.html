@@ -3,11 +3,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Find Your Perfect Boba</title>
+    <title>ProjectBoba | Find Your Perfect Boba</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='JS/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/jquery.fatNav.min.js') }}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/jquery.fatNav.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   </head>
   <body>
+    <div class="fat-nav">
+      <div class="fat-nav__wrapper">
+        <ul>
+          <li><a href="{{url_for('home')}}">Home</a></li>
+          <li><a href="#">Find your perfect boba store</a></li>
+          <li><a href="{{url_for('table')}}">see all the boba stores we tried</a></li>
+        </ul>
+      </div>
+    </div>
     <h3>Take this survey and find out your perfect boba spot near NYU</h3>
     <form method="POST" action="">
       <div class="form-section">

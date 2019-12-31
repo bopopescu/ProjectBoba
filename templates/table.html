@@ -3,16 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Find Your Perfect Boba</title>
+  <title>ProjectBoba | Find Your Perfect Boba</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="{{ url_for('static', filename='JS/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='JS/jquery.fatNav.min.js') }}"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSS/jquery.fatNav.min.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
   <h3>Here is a list of all the boba stores we tried near NYU</h3>
+  <div class="fat-nav">
+    <div class="fat-nav__wrapper">
+      <ul>
+        <li><a href="{{url_for('home')}}">Home</a></li>
+        <li><a href="{{url_for('search')}}">Find your perfect boba store</a></li>
+        <li><a href="#">see all the boba stores we tried</a></li>
+      </ul>
+    </div>
+  </div>
 
   {% if table|length > 0 %}
   <table>
-    <tr style="background-color: #D3D3D3;">
+    <tr style="background-color: #EDD8BB;">
       <td><p class="tableHeading">Store Name</p></td>
       <td><p class="tableHeading">Store Address</p></td>
       <td><p class="tableHeading">What We Like About Them</p></td>
@@ -45,14 +58,14 @@
       <input type="text" name="reason" placeholder="optional">
       <br>
     </div>
-    
+
     <div class="form-section">
       <label><b>Boba Texture</b></label>
       <input type="radio" name="bobatexture" value="soft"> soft
       <input type="radio" name="bobatexture" value="regular"> regular
       <br>
     </div>
-    
+
     <input type="submit">
   </form>
 
