@@ -8,7 +8,8 @@
 - [X] User query insert
 - [x] hamburger menu (or something equivalent) to switch between pages
 - [ ] Better UI
+- [ ] Implement Login Page
+- [ ] Re-model DB to connect with users
 
 ### GOAL:
-- Creating a web application to recommend boba store near NYU.
-- Showcasing cool visualizations on the website.
+- Creating a web dating application based on boba store near NYU.
